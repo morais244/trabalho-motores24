@@ -12,13 +12,15 @@ public class jogador : MonoBehaviour
     public bool noChao;
     
     private Rigidbody rb;
+    private AudioSource source;
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Log("Start");
        TryGetComponent(out rb);
-       
+       TryGetComponent(out source);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -44,6 +46,9 @@ public class jogador : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && noChao)
         {
+            //pulo
+            source.Play();
+            
             rb.AddForce(Vector3.up * forcaPulo, ForceMode.Impulse);
             noChao = false;
         }
